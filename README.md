@@ -27,6 +27,5 @@ seek.sort_by    #=> 'age'
 seek.sort_order #=> 'desc
 seek.order      #=> 'age desc'
 
-seek.to_hash
-  #=> Returns a Hash with all the parameters listed above.
+seek.to_hash    #=> Returns a Hash with all the parameters listed above.
 ```
