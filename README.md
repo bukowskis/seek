@@ -18,6 +18,7 @@ params = { page: '4', sort_order: 'desc', per_page: '1000' }
 seek = Seek.new params,
        valid_sort_bys: %w{ first_name, last_name, age },
        max_per_page: 50,
+       default_per_page: 10,
        default_sort_by: :age,
        default_sort_order: :asc
 

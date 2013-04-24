@@ -19,6 +19,7 @@ class Seek
     self.sort_order   = params[:sort_order]
     self.max_per_page       = options[:max_per_page]
     self.valid_sort_bys     = options[:valid_sort_bys]
+    self.default_per_page   = options[:default_per_page]
     self.default_sort_by    = options[:default_sort_by]
     self.default_sort_order = options[:default_sort_order]
   end

@@ -20,6 +20,10 @@ describe Seek do
     end
 
     describe '#per_page' do
+      it 'takes the default from the configuration if nothing provided' do
+        Seek.new.per_page.should == 20
+      end
+
       it 'comes from the params' do
         seek.per_page.should == 20
       end
@@ -29,9 +33,9 @@ describe Seek do
         seek.per_page.should == 15
       end
 
-      it 'does not become negative on weird values' do
+      it 'falls back to the default on weird values' do
         seek = Seek.new params.merge(per_page: 'what?')
-        seek.per_page.should == 1
+        seek.per_page.should == 20
       end
     end
 
