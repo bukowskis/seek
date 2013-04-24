@@ -13,20 +13,20 @@ gem install seek
 # Examples
 
 ```ruby
-params = { page: '4', sort_order: 'desc', per_page: '1000' }
+params = { page: '4', sort_direction: 'desc', per_page: '1000' }
 
 seek = Seek.new params,
        valid_sort_bys: %w{ first_name, last_name, age },
        max_per_page: 50,
        default_per_page: 10,
        default_sort_by: :age,
-       default_sort_order: :asc
+       default_sort_direction: :asc
 
-seek.page       #=> 4
-seek.per_page   #=> 50
-seek.sort_by    #=> 'age'
-seek.sort_order #=> 'desc
-seek.order      #=> 'age desc'
+seek.page           #=> 4
+seek.per_page       #=> 50
+seek.sort_by        #=> 'age'
+seek.sort_direction #=> 'desc
+seek.order          #=> 'age desc'
 
 seek.to_hash    #=> Returns a Hash with all the parameters listed above.
 ```

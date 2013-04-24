@@ -1,9 +1,9 @@
 class Seek
   module Sorting
 
-    attr_writer :sort_by, :sort_order, :valid_sort_bys, :default_sort_by, :default_sort_order
+    attr_writer :sort_by, :sort_direction, :valid_sort_bys, :default_sort_by, :default_sort_direction
 
-    # Returns true if sort_by and sort_order are present.
+    # Returns true if sort_by and sort_direction are present.
     #
     def sortable?
       !!order
@@ -17,9 +17,9 @@ class Seek
       default_sort_by
     end
 
-    def sort_order
-      result = @sort_order.to_s.downcase
-      valid_sort_orders.include?(result) ? result : valid_sort_orders.first
+    def sort_direction
+      result = @sort_direction.to_s.downcase
+      valid_sort_directions.include?(result) ? result : valid_sort_directions.first
     end
 
     # Useful for queries that require the format "first_name desc" (such as SQL or lucene)
@@ -28,7 +28,7 @@ class Seek
     #
     def order
       return if sort_by.to_s.empty?
-      [sort_by, sort_order].join(' ')
+      [sort_by, sort_direction].join(' ')
     end
 
     def valid_sort_bys
@@ -42,14 +42,14 @@ class Seek
       valid_sort_bys.include?(result) ? result : valid_sort_bys.first
     end
 
-    def default_sort_order
-      result = @default_sort_order.to_s.downcase
-      valid_sort_orders.include?(result) ? result : valid_sort_orders.first
+    def default_sort_direction
+      result = @default_sort_direction.to_s.downcase
+      valid_sort_directions.include?(result) ? result : valid_sort_directions.first
     end
 
     private
 
-    def valid_sort_orders
+    def valid_sort_directions
       %w{ asc desc }
     end
 

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Seek do
 
-  let(:params)  { { page: 4, per_page: 20, 'sort_by' => :first_name, sort_order: 'DESC' } }
+  let(:params)  { { page: 4, per_page: 20, 'sort_by' => :first_name, sort_direction: 'DESC' } }
   let(:options) { { 'max_per_page' => 30, valid_sort_bys: %w{ age first_name last_name } } }
 
   let(:seek)    { Seek.new params, options }
@@ -76,23 +76,23 @@ describe Seek do
       end
     end
 
-    describe '#sort_order' do
+    describe '#sort_direction' do
       it 'comes from the params and is a String' do
-        seek.sort_order.should == 'desc'
+        seek.sort_direction.should == 'desc'
       end
 
       it 'is ascending if nothing is specified' do
-        Seek.new.sort_order.should == 'asc'
+        Seek.new.sort_direction.should == 'asc'
       end
 
       it 'is ascending if something invalid is specified' do
-        Seek.new(sort_order: 'vertically').sort_order.should == 'asc'
+        Seek.new(sort_direction: 'vertically').sort_direction.should == 'asc'
       end
     end
   end
 
   describe '#order' do
-    it 'is sort_by and sort_order separated by a space' do
+    it 'is sort_by and sort_direction separated by a space' do
       seek.order.should == 'first_name desc'
     end
 
@@ -102,7 +102,7 @@ describe Seek do
   end
 
   describe '#sortable?' do
-    it 'is true if there is sort_by and sort_order' do
+    it 'is true if there is sort_by and sort_direction' do
       seek.should be_sortable
     end
 
@@ -113,7 +113,7 @@ describe Seek do
 
   describe '#to_hash' do
     it 'contains all params' do
-      seek.to_hash.should == { page: 4, per_page: 20, sort_by: 'first_name', sort_order: 'desc', order: 'first_name desc' }
+      seek.to_hash.should == { page: 4, per_page: 20, sort_by: 'first_name', sort_direction: 'desc', order: 'first_name desc' }
     end
   end
 
