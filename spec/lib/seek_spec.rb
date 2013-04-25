@@ -85,6 +85,10 @@ describe Seek do
         Seek.new.sort_direction.should == 'asc'
       end
 
+      it 'is the default if speficied' do
+        Seek.new(nil, default_sort_direction: 'desc').sort_direction.should == 'desc'
+      end
+
       it 'is ascending if something invalid is specified' do
         Seek.new(sort_direction: 'vertically').sort_direction.should == 'asc'
       end

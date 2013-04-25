@@ -19,7 +19,7 @@ class Seek
 
     def sort_direction
       result = @sort_direction.to_s.downcase
-      valid_sort_directions.include?(result) ? result : valid_sort_directions.first
+      valid_sort_directions.include?(result) ? result : default_sort_direction
     end
 
     # Useful for queries that require the format "first_name desc" (such as SQL or lucene)
