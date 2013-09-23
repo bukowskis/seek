@@ -1,7 +1,6 @@
 require 'seek/configuration'
 require 'seek/pagination'
 require 'seek/sorting'
-require 'seek/tools'
 require 'seek/version'
 
 class Seek
@@ -11,17 +10,16 @@ class Seek
   attr_reader :options
 
   def initialize(params = {}, options = {})
-    params  = params ? Tools.symbolize_keys(params) : {}
-    options = options ? Tools.symbolize_keys(options) : {}
-    self.page         = params[:page]
-    self.per_page     = params[:per_page]
-    self.sort_by      = params[:sort_by]
-    self.sort_direction   = params[:sort_direction]
-    self.max_per_page       = options[:max_per_page]
-    self.valid_sort_bys     = options[:valid_sort_bys]
-    self.default_per_page   = options[:default_per_page]
-    self.default_sort_by    = options[:default_sort_by]
-    self.default_sort_direction = options[:default_sort_direction]
+    params = {} unless params
+    self.page                   = params[:page]                    || params['page']
+    self.per_page               = params[:per_page]                || params['per_page']
+    self.sort_by                = params[:sort_by]                 || params['sort_by']
+    self.sort_direction         = params[:sort_direction]          || params['sort_direction']
+    self.max_per_page           = options[:max_per_page]           || options['max_per_page']
+    self.valid_sort_bys         = options[:valid_sort_bys]         || options['valid_sort_bys']
+    self.default_per_page       = options[:default_per_page]       || options['default_per_page']
+    self.default_sort_by        = options[:default_sort_by]        || options['default_sort_by']
+    self.default_sort_direction = options[:default_sort_direction] || options['default_sort_direction']
   end
 
   def to_hash
