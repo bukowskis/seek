@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    seek (0.1.1)
+    seek (0.1.2)
       positify (~> 0.0.1)
 
 GEM
