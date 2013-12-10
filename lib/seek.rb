@@ -8,6 +8,7 @@ class Seek
   include Sorting
 
   attr_reader :options
+  attr_accessor :coerce_null
 
   def initialize(params = {}, options = {})
     params = {} unless params
@@ -15,6 +16,7 @@ class Seek
     self.per_page               = params[:per_page]                || params['per_page']
     self.sort_by                = params[:sort_by]                 || params['sort_by']
     self.sort_direction         = params[:sort_direction]          || params['sort_direction']
+    self.coerce_null            = params[:coerce_null]             || params['coerce_null']
     self.max_per_page           = options[:max_per_page]           || options['max_per_page']
     self.valid_sort_bys         = options[:valid_sort_bys]         || options['valid_sort_bys']
     self.default_per_page       = options[:default_per_page]       || options['default_per_page']
